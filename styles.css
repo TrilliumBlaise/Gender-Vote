@@ -11,22 +11,37 @@ body {
   height: 100vh;
   width: 100vw;
 }
-
 .vote {
   display: flex;
   height: 100%;
   width: 50%;
+  font-size: 500px;
   text-align: center;
-  font-size: 100px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-
 .boy {
   background-color: rgb(75, 219, 255);
 }
 
 .girl {
   background-color: rgb(219, 146, 188);
+}
+
+@media only screen and (max-width: 450px) {
+  body {
+    flex-direction: column;
+  }
+  .vote {
+    height: 50%;
+    width: 100%;
+    font-size: 100px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .vote {
+    font-size: 100px;
+  }
 }
