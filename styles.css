@@ -17,6 +17,7 @@ body {
   height: 100%;
   width: 50%;
   text-align: center;
+  font-size: 200px
   justify-content: center;
   align-items: center;
   cursor: pointer;
