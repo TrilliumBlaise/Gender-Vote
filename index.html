@@ -11,7 +11,20 @@
     <title>Gender Vote</title>
   </head>
   <body>
+    <button class="change-parameters"></button>
     <div class="container">
+      <div class="parameter-window">
+        <span class="message">Would you like to change the reveal time?</span>
+        <div class="buttons">
+          <button data-button="yes">YES</button>
+          <button data-button="no">NO</button>
+        </div>
+        <div class="change-time">
+          <input class="hours" type="text" placeholder="hours" />
+          <input class="minutes" type="text" placeholder="minutes" />
+          <input class="seconds" type="text" placeholder="seconds" />
+        </div>
+      </div>
       <div class="title">
         <h1>Boy or Girl</h1>
         <h2>Place your vote!</h2>
