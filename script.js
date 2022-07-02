@@ -1,60 +1,115 @@
-const SEX = 'girl';
-const REVEAL_TIME = { hours: 11, minutes: 49, seconds: 0 };
+const state = {
+  sex: 'boy',
+  reveal_time: { hours: 13, minutes: 40, seconds: 20 },
+  name: 'Henry David',
+}
 
-const boyElement = document.querySelector('.boy').firstElementChild;
-const girlElement = document.querySelector('.girl').firstElementChild;
+const boyElement = document.querySelector('.boy').firstElementChild
+const girlElement = document.querySelector('.girl').firstElementChild
 
-let savedVotes;
+let savedVotes
 document.addEventListener('DOMContentLoaded', e => {
-  showResults();
-});
+  showResults()
+})
 document.addEventListener('click', e => {
   savedVotes = {
     boy: parseInt(boyElement.innerHTML),
     girl: parseInt(girlElement.innerHTML),
-  };
+  }
+  if (e.target.matches('.change-parameters')) {
+    openParamterChangeWindow()
+  }
+  if (e.target.matches('[data-button = "yes"]') || e.target.matches('[data-button = "no"]')) {
+    answerYesOrNo(e.target)
+  }
   if (e.target.classList.contains('boy') || e.target.parentElement.classList.contains('boy')) {
-    addVote('boy');
+    addVote('boy')
   }
   if (e.target.classList.contains('girl') || e.target.parentElement.classList.contains('girl')) {
-    addVote('girl');
+    addVote('girl')
   }
-});
+})
+document.addEventListener('keydown', e => {
+  if (!document.activeElement.matches('input')) return
+  if (e.key !== 'Enter') return
+  const newTime = getValues()
+  newTime.forEach(time => {
+    if (time[0] !== '') {
+      state.reveal_time[time[1]] = parseInt(time[0])
+    }
+  })
+  document.querySelector('.parameter-window').style.display = 'none'
+})
 
 function addVote(sex) {
   if (sex === 'boy') {
-    savedVotes.boy += 1;
+    savedVotes.boy += 1
   }
   if (sex === 'girl') {
-    savedVotes.girl += 1;
+    savedVotes.girl += 1
   }
-  showResults(savedVotes);
+  showResults(savedVotes)
 }
 
 function showResults(data) {
   if (data != undefined) {
-    boyElement.innerHTML = `${data.boy}`;
-    girlElement.innerHTML = `${data.girl}`;
-    return;
+    boyElement.innerHTML = `${data.boy}`
+    girlElement.innerHTML = `${data.girl}`
+    return
   }
-  boyElement.innerHTML = 0;
-  girlElement.innerHTML = 0;
+  boyElement.innerHTML = 0
+  girlElement.innerHTML = 0
 }
 
 function revealSex() {
-  const date = new Date();
-  if (date.getHours() === REVEAL_TIME.hours && date.getMinutes() === REVEAL_TIME.minutes && date.getSeconds() === REVEAL_TIME.seconds) {
-    const container = document.querySelector('.container');
-    container.innerHTML = '';
-    container.classList.add(`${SEX.toLowerCase()}`);
-    const newMessage = document.createElement('h1');
-    newMessage.style.fontSize = '233px';
-    newMessage.innerHTML = `Congratulations!<br> It's a ${SEX}!`;
-    container.append(newMessage);
-    startConfetti();
+  const date = new Date()
+  if (
+    date.getHours() === state.reveal_time.hours &&
+    date.getMinutes() === state.reveal_time.minutes &&
+    date.getSeconds() === state.reveal_time.seconds
+  ) {
+    document.querySelector('.change-parameters').style.display = 'none'
+    const container = document.querySelector('.container')
+    container.innerHTML = ''
+    container.classList.add(`${state.sex.toLowerCase()}`)
+    const newMessage = document.createElement('h1')
+    newMessage.style.fontSize = '233px'
+    newMessage.innerHTML = `Congratulations!<br> It's a ${state.sex}!<br>${state.name}`
+    container.append(newMessage)
+    startConfetti()
   }
 }
 
+function openParamterChangeWindow() {
+  document.querySelector('.parameter-window').style.display = 'flex'
+}
+function getValues() {
+  const changeTime = document.querySelector('.change-time')
+  const inputs = []
+  changeTime.querySelectorAll('input').forEach(input => inputs.push(input.value))
+
+  const [hours, minutes, seconds] = [...inputs]
+  return [
+    [hours, 'hours'],
+    [minutes, 'minutes'],
+    [seconds, 'seconds'],
+  ]
+}
+
+function answerYesOrNo(target) {
+  if (target.dataset.button === 'yes') {
+    document.querySelector('.buttons').style.display = 'none'
+    document
+      .querySelector('.change-time')
+      .querySelectorAll('input')
+      .forEach(input => (input.style.display = 'block'))
+  }
+  if (target.dataset.button === 'no') {
+    document.querySelector('.parameter-window').style.display = 'none'
+  }
+}
+
+function changeParameters() {}
 setInterval(() => {
-  revealSex();
-}, 250);
+  revealSex()
+}, 250)
