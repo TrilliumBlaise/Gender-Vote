@@ -9,6 +9,15 @@ body {
   width: 100vw;
 }
 
+.change-parameters {
+  position: absolute;
+  z-index: 3;
+  height: 2rem;
+  width: 4rem;
+  background-color: rgb(68 199 233);
+  border: 3px outset white;
+}
+
 #confetti-canvas {
   position: absolute;
   z-index: 1;
@@ -23,6 +32,36 @@ body {
   align-items: center;
 }
 
+.parameter-window {
+  position: absolute;
+  justify-self: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 3px outset white;
+  height: 300px;
+  font-size: 3rem;
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+input {
+  width: 8rem;
+  display: none;
+  font-size: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.buttons button {
+  height: 3rem;
+  width: 6rem;
+  font-size: 2rem;
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+  background-color: transparent;
+  border: 3px outset white;
+}
 .container h1 {
   font-size: 500px;
   text-align: center;
