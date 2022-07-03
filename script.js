@@ -71,11 +71,11 @@ function revealSex() {
     document.querySelector('.change-parameters').style.display = 'none'
     const container = document.querySelector('.container')
     container.innerHTML = ''
-    container.classList.add(`${state.sex.toLowerCase()}`)
     const newMessage = document.createElement('h1')
     newMessage.style.fontSize = '233px'
     newMessage.innerHTML = `Congratulations!<br> It's a ${state.sex}!<br>${state.name}`
     container.append(newMessage)
+    container.classList.add(`${state.sex.toLowerCase()}`)
     startConfetti()
   }
 }
