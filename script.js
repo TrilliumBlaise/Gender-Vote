@@ -72,7 +72,7 @@ function revealSex() {
     const container = document.querySelector('.container')
     container.innerHTML = ''
     const newMessage = document.createElement('h1')
-    newMessage.style.fontSize = '233px'
+    newMessage.style.fontSize = '10rem'
     newMessage.innerHTML = `Congratulations!<br> It's a ${state.sex}!<br>${state.name}`
     container.append(newMessage)
     container.classList.add(`${state.sex.toLowerCase()}`)
