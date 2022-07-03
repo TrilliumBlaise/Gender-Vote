@@ -1,6 +1,6 @@
 const state = {
   sex: '',
-  reveal_time: { hours: 16, minutes: 30, seconds: 00 },
+  revealTime: { hours: 16, minutes: 30, seconds: 00 },
   name: '',
 }
 
@@ -35,7 +35,7 @@ document.addEventListener('keydown', e => {
   const newTime = getValues()
   newTime.forEach(time => {
     if (time[0] !== '') {
-      state.reveal_time[time[1]] = parseInt(time[0])
+      state.revealTime[time[1]] = parseInt(time[0])
     }
   })
   document.querySelector('.parameter-window').style.display = 'none'
@@ -64,9 +64,9 @@ function showResults(data) {
 function revealSex() {
   const date = new Date()
   if (
-    date.getHours() === state.reveal_time.hours &&
-    date.getMinutes() === state.reveal_time.minutes &&
-    date.getSeconds() === state.reveal_time.seconds
+    date.getHours() === state.revealTime.hours &&
+    date.getMinutes() === state.revealTime.minutes &&
+    date.getSeconds() === state.revealTime.seconds
   ) {
     document.querySelector('.change-parameters').style.display = 'none'
     const container = document.querySelector('.container')
