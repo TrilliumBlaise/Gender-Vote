@@ -1,7 +1,7 @@
 const state = {
-  sex: 'test',
+  sex: 'boy',
   revealTime: { hours: 16, minutes: 30, seconds: 0 },
-  name: 'test test',
+  name: 'Henry David',
 }
 
 const boyElement = document.querySelector('.boy').firstElementChild
