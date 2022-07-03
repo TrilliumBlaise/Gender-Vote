@@ -1,5 +1,5 @@
 const state = {
-  sex: '',
+  sex: 'boy',
   revealTime: { hours: 16, minutes: 30, seconds: 0 },
   name: '',
 }
